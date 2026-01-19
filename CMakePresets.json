@@ -1,0 +1,48 @@
+{
+  "version": 8,
+  "configurePresets": [
+    {
+      "name": "common",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "RelWithDebInfo",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "BOARD_NAME": "${presetName}"
+      },
+      "environment": {
+        "CFLAGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op",
+        "CXXFLAGS": "-Wall -Wextra -Wpedantic -Wunused-parameter -Winit-self -Wcast-align -Wconversion -Wnull-dereference -Wduplicated-cond  -Wsign-conversion -Wlogical-op"
+      }
+    },
+    {
+      "name": "STM32G431C6TX",
+      "displayName": "STM32G431C6TX",
+      "description": "Build for ARMv7E-M architecture (Cortex M4, M7) with FPU",
+      "inherits": "common",
+      "toolchainFile": "${sourceDir}/bsp/STM32G431C6TX/cmake/gcc-arm-none-eabi.cmake"
+    },
+    {
+      "name": "STM32F429ZIT",
+      "displayName": "STM32F429ZIT",
+      "description": "Build for ARMv7E-M architecture (Cortex M4, M7) with FPU",
+      "inherits": "common",
+      "toolchainFile": "${sourceDir}/bsp/STM32F429ZIT/cmake/gcc-arm-none-eabi.cmake"
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "STM32G431C6TX_firmware",
+      "description": "STM32G431C6TX firmware",
+      "configurePreset": "STM32G431C6TX",
+      "targets": "precise_ammeter"
+    },
+    {
+      "name": "STM32F429ZIT_firmware",
+      "description": "STM32F429ZIT firmware",
+      "configurePreset": "STM32F429ZIT",
+      "targets": "precise_ammeter"
+    }
+  ]
+}

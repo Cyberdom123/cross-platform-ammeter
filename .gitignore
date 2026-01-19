@@ -1,0 +1,13 @@
+build/
+dist/
+cmake-build-*/
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+CMakeLists.txt.user
+CMakeCache.txt
+CMakeFiles/
