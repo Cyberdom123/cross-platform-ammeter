@@ -4,6 +4,7 @@ cmake-build-*/
 
 .vscode/
 .idea/
+.cache
 *.swp
 *.swo
 *~

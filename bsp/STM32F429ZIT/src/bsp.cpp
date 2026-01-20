@@ -1,5 +1,6 @@
 #include "include/bsp.hpp"
 
+#include "SEGGER_RTT.h"
 #include "adc.h"
 #include "gpio.h"
 #include "i2c.h"
@@ -17,10 +18,15 @@ void init() {
   MX_GPIO_Init();
   MX_ADC3_Init();
   MX_I2C3_Init();
+
+  SEGGER_RTT_Init();
+  HAL_Delay(100);
 }
 
 int64_t getUptimeMs() { return HAL_GetTick(); }
 
 void delayMs(int64_t ms) { HAL_Delay(static_cast<uint32_t>(ms)); }
+
+void reset() { NVIC_SystemReset(); }
 
 } // namespace bsp
